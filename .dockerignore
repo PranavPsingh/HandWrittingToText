@@ -1,0 +1,13 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+.buildozer/
+bin/
+build/
+dist/
+training/datasets/
+*.onnx
+*.pt
+*.pth

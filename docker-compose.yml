@@ -1,0 +1,42 @@
+services:
+  test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.test
+    volumes:
+      - .:/workspace
+
+  android:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.buildozer
+    volumes:
+      - .:/workspace
+      - buildozer-cache:/root/.buildozer
+      - buildozer-build:/build
+    profiles: ["android"]
+
+
+
+  training:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.training
+    volumes:
+      - .:/workspace
+    ports:
+      - "127.0.0.1:8888:8888"
+    shm_size: "4gb"
+    # Uncomment for NVIDIA GPU passthrough (needs WSL2 + NVIDIA driver):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    profiles: ["training"]
+
+volumes:
+  buildozer-cache:
+  buildozer-build:

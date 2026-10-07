@@ -1,0 +1,9 @@
+FROM pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime
+
+WORKDIR /workspace
+
+COPY requirements-training.txt .
+RUN pip install --no-cache-dir -r requirements-training.txt jupyterlab
+
+EXPOSE 8888
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
