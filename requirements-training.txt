@@ -1,0 +1,18 @@
+# Training environment only. Never installed in the app.
+# torch is already provided by the pytorch/pytorch base image (CUDA build), so it is
+# deliberately not listed here: pip could otherwise replace it with a different build.
+
+numpy
+pandas
+scikit-learn
+matplotlib
+opencv-python-headless
+tensorboard
+ipykernel
+
+# HTR evaluation (CER / WER)
+jiwer
+
+# ONNX export and verification
+onnx
+onnxruntime

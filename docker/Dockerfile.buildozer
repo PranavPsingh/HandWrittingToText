@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv git zip unzip openjdk-17-jdk \
+    autoconf automake libtool libtool-bin libltdl-dev pkg-config \
+    zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
+    libffi-dev libssl-dev build-essential ccache curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir buildozer cython
+
+WORKDIR /workspace
+CMD ["buildozer", "android", "debug"]
